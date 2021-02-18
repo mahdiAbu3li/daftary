@@ -36,13 +36,10 @@ const CreatePage = () => {
     canvas.renderAll();
   };
   const addImage = () => {
-    const img = new fabric.Image(mahdi, {
-      left: 100,
-      top: 100,
-      angle: 30,
-      opacity: 0.85,
+    fabric.Image.fromURL(mahdi, (img) => {
+      canvas.add(img);
     });
-    canvas.add(img);
+
     canvas.renderAll();
   };
   return (
@@ -50,6 +47,7 @@ const CreatePage = () => {
       className="container"
       style={{
         backgroundColor: "white",
+        width: "100%",
         border: "1px solid black",
         height: "auto",
         display: "flex",
