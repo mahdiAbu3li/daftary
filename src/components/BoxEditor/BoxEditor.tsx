@@ -7,7 +7,7 @@ import { BsTypeItalic } from "react-icons/bs";
 import { BsTypeUnderline } from "react-icons/bs";
 import { SketchPicker } from "react-color";
 import { EditorContext } from "../../context/EditorContext";
-import "./BoxEditor.css";
+import styles from "./BoxEditor.module.css";
 
 function BoxEditor() {
   const [OpenPicker, setOpenPicker] = useState(false);
@@ -44,33 +44,32 @@ function BoxEditor() {
   console.log(color);
   console.log(FontSize);
   return (
-    <div>
-      <div className="container">
-        <div className="textType">
-          <button onClick={IsBold}>
-            <BsTypeBold />
-          </button>
-          <button onClick={IsItalic}>
-            <BsTypeItalic />
-          </button>
-          <button onClick={IsUnderLine}>
-            <BsTypeUnderline />
-          </button>
-        </div>
+    <div className={styles.container}>
+      <div className={styles.textType}>
+        <button onClick={IsBold}>
+          <BsTypeBold />
+        </button>
+        <button onClick={IsItalic}>
+          <BsTypeItalic />
+        </button>
+        <button onClick={IsUnderLine}>
+          <BsTypeUnderline />
+        </button>
+      </div>
 
-        <div className="textAlign">
-          <button onClick={() => align("left")}>
-            <BsTextLeft />
-          </button>
-          <button onClick={() => align("center")}>
-            <BsTextCenter />
-          </button>
-          <button onClick={() => align("right")}>
-            <BsTextRight />
-          </button>
-        </div>
-
-        <div className="picker">
+      <div className={styles.textAlign}>
+        <button onClick={() => align("left")}>
+          <BsTextLeft />
+        </button>
+        <button onClick={() => align("center")}>
+          <BsTextCenter />
+        </button>
+        <button onClick={() => align("right")}>
+          <BsTextRight />
+        </button>
+      </div>
+      <div className={styles.selAndPick}>
+        <div className={styles.picker}>
           <button
             onClick={() => {
               OpenPicker ? setOpenPicker(false) : setOpenPicker(true);
@@ -80,7 +79,7 @@ function BoxEditor() {
             Color
           </button>
           {OpenPicker ? (
-            <div className="sketchPicker">
+            <div className={styles.sketchPicker}>
               <SketchPicker
                 color={color}
                 onChange={(color) => changeColor(color.hex)}
@@ -91,7 +90,7 @@ function BoxEditor() {
           )}
         </div>
 
-        <div className="selectors">
+        <div className={styles.selectors}>
           <select
             id="fontSize"
             value={FontSize}
