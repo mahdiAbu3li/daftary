@@ -13,6 +13,6 @@ export const EditorContext = React.createContext({
   handleUnderLine: () => {},
   handleAlign: (dir: string) => {},
   handleColor: (color: string) => {},
-  handleFontSize: (e: React.ChangeEvent<HTMLSelectElement>) => {},
+  handleFontSize: (e: React.ChangeEvent<HTMLInputElement>) => {},
   handleFontFamily: (e: React.ChangeEvent<HTMLSelectElement>) => {},
 });

@@ -28,7 +28,7 @@ function EditorContextProvider({ children }: Prop) {
   const handleColor = (color: string) => {
     setColor(color);
   };
-  const handleFontSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleFontSize = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFontSize(parseInt(e.target.value));
   };
   const handleFontFamily = (e: React.ChangeEvent<HTMLSelectElement>) => {
