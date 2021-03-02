@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
-import mahdi from "../../mahdi.jpg";
 import BoxEditor from "../BoxEditor/BoxEditor";
 import styles from "./CreatePageStyle.module.css";
-import { BsLayoutTextWindowReverse } from "react-icons/bs";
+import { BsCircle } from "react-icons/bs";
 import { EditorContext } from "../../context/EditorContext";
 import { MdTextFields } from "react-icons/md";
 import { BsBoundingBoxCircles } from "react-icons/bs";
 import { RiImageAddFill } from "react-icons/ri";
+import { FaSlash } from "react-icons/fa";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import {
+  addText,
+  addRect,
+  addCircle,
+  addLine,
+} from "../../functions/addObjects";
 const CreatePage = () => {
   const x = new fabric.Canvas("init");
   const [canvas, setCanvas] = useState(x);
   // const [selectedObject, setSelectedObject] = useState();
   const [isText, setIsText] = useState(false);
   const states = React.useContext(EditorContext);
-  // const [color, setcolor] = useState(states.color);
   useEffect(() => {
     setCanvas(initCanvas());
   }, []);
@@ -43,12 +49,15 @@ const CreatePage = () => {
     states.align,
   ]);
 
-  canvas.on("mouse:down", function (options) {
-    if (options.target) {
-      canvas.bringToFront(options.target);
+  canvas.on("mouse:down", function (obj) {
+    if (obj.target) {
+      canvas.bringToFront(obj.target);
     }
+    if (obj.target && obj.target.type === "textbox") setIsText(true);
+    else setIsText(false);
   });
-  console.log(states.color);
+
+  console.log(isText);
   const initCanvas = () =>
     new fabric.Canvas("canvas", {
       height: window.innerHeight - 65,
@@ -56,49 +65,55 @@ const CreatePage = () => {
       backgroundColor: "#fff",
     });
 
-  const addRect = () => {
-    const rect = new fabric.Rect({
-      height: 280,
-      width: 200,
-      fill: states.color,
-    });
-    canvas.add(rect);
-    canvas.renderAll();
-  };
-
-  const addText = () => {
-    const text = new fabric.Textbox("write your text", {
-      left: 50,
-      top: 50,
-      width: 150,
-      fontSize: states.fontSize,
-      fill: states.color,
-      textAlign: "center",
-    });
-    canvas.add(text);
+  const addObject = (object: fabric.Object) => {
+    canvas.add(object);
     canvas.renderAll();
   };
   const addImage = () => {
-    fabric.Image.fromURL(mahdi, (img) => {
-      canvas.add(img);
-    });
-
-    canvas.renderAll();
+    fabric.Image.fromURL(
+      "https://homepages.cae.wisc.edu/~ece533/images/airplane.png",
+      (img) => {
+        canvas.add(img);
+        canvas.renderAll();
+      }
+    );
+  };
+  const removeObject = () => {
+    const obj = canvas.getActiveObject();
+    canvas.remove(obj);
   };
   return (
     <div>
       <div className={styles.container}>
-        <BoxEditor />
+        {isText ? <BoxEditor /> : <></>}
 
         <div className={styles.addObject}>
-          <button onClick={() => addText()}>
+          <button onClick={() => addObject(addText())}>
             <MdTextFields />
           </button>
-          <button onClick={() => addRect()} style={{ fontSize: "2em" }}>
+          <button
+            onClick={() => addObject(addRect())}
+            style={{ fontSize: "2em" }}
+          >
             <BsBoundingBoxCircles />
+          </button>
+          <button
+            onClick={() => addObject(addCircle())}
+            style={{ fontSize: "2em" }}
+          >
+            <BsCircle />
+          </button>
+          <button
+            onClick={() => addObject(addLine())}
+            style={{ fontSize: "2em" }}
+          >
+            <FaSlash />
           </button>
           <button onClick={() => addImage()}>
             <RiImageAddFill />
+          </button>
+          <button onClick={removeObject}>
+            <RiDeleteBin6Line />
           </button>
         </div>
 
