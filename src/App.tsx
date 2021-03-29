@@ -7,8 +7,8 @@ function App() {
   return (
     <div className="App">
       <EditorContextProvider>
-        <CreatePage />
-        {/* <Book /> */}
+        {/* <CreatePage /> */}
+        <Book />
         {/* <EditorJS /> */}
       </EditorContextProvider>
     </div>

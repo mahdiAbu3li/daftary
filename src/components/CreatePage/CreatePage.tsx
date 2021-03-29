@@ -9,16 +9,17 @@ import { BsBoundingBoxCircles } from "react-icons/bs";
 import { RiImageAddFill } from "react-icons/ri";
 import { FaSlash } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
+
 import {
   addText,
   addRect,
   addCircle,
   addLine,
 } from "../../functions/addObjects";
+
 const CreatePage = () => {
   const x = new fabric.Canvas("init");
   const [canvas, setCanvas] = useState(x);
-  // const [selectedObject, setSelectedObject] = useState();
   const [isText, setIsText] = useState(false);
   const states = React.useContext(EditorContext);
   useEffect(() => {
@@ -27,27 +28,54 @@ const CreatePage = () => {
 
   React.useEffect(() => {
     if (canvas.getActiveObject()) {
-      console.log(states.fontFamily);
       const activeObj = canvas.getActiveObject();
-      activeObj.set("fill", states.color);
-      activeObj.setOptions({ fontSize: states.fontSize });
-      activeObj.setOptions({ fontFamily: states.fontFamily });
-      activeObj.setOptions({ underline: states.IsUnderLine });
-      activeObj.setOptions({ textAlign: states.align });
-      activeObj.setOptions({ fontWeight: states.IsBold ? "bold" : "" });
       activeObj.setOptions({ fontStyle: states.IsItalic ? "italic" : "" });
       canvas.renderAll();
     }
-  }, [
-    canvas,
-    states.color,
-    states.fontSize,
-    states.fontFamily,
-    states.IsItalic,
-    states.IsUnderLine,
-    states.IsBold,
-    states.align,
-  ]);
+  }, [canvas, states.IsItalic]);
+
+  React.useEffect(() => {
+    const obj = canvas.getActiveObject();
+    if (obj) {
+      obj.set("fill", states.color);
+      canvas.renderAll();
+    }
+  }, [canvas, states.color]);
+  React.useEffect(() => {
+    const obj = canvas.getActiveObject();
+    if (obj) {
+      obj.setOptions({ fontSize: states.fontSize });
+      canvas.renderAll();
+    }
+  }, [canvas, states.fontSize]);
+  React.useEffect(() => {
+    const obj = canvas.getActiveObject();
+    if (obj) {
+      obj.setOptions({ fontFamily: states.fontFamily });
+      canvas.renderAll();
+    }
+  }, [canvas, states.fontFamily]);
+  React.useEffect(() => {
+    const obj = canvas.getActiveObject();
+    if (obj) {
+      obj.setOptions({ underline: states.IsUnderLine });
+      canvas.renderAll();
+    }
+  }, [canvas, states.IsUnderLine]);
+  React.useEffect(() => {
+    const obj = canvas.getActiveObject();
+    if (obj) {
+      obj.setOptions({ textAlign: states.align });
+      canvas.renderAll();
+    }
+  }, [canvas, states.align]);
+  React.useEffect(() => {
+    const obj = canvas.getActiveObject();
+    if (obj) {
+      obj.setOptions({ fontWeight: states.IsBold ? "bold" : "" });
+      canvas.renderAll();
+    }
+  }, [canvas, states.IsBold]);
 
   canvas.on("mouse:down", function (obj) {
     if (obj.target) {
@@ -67,11 +95,14 @@ const CreatePage = () => {
 
   const addObject = (object: fabric.Object) => {
     canvas.add(object);
+    object.center();
+    // console.log(canvas.loadFromJSON(asd , ()));
     canvas.renderAll();
   };
   const addImage = () => {
     fabric.Image.fromURL(
-      "https://homepages.cae.wisc.edu/~ece533/images/airplane.png",
+      // "https://homepages.cae.wisc.edu/~ece533/images/airplane.png"
+      "C:\\Users\\mahdii\\Desktop\\New\\ma.jpg",
       (img) => {
         canvas.add(img);
         canvas.renderAll();
@@ -82,6 +113,7 @@ const CreatePage = () => {
     const obj = canvas.getActiveObject();
     canvas.remove(obj);
   };
+
   return (
     <div>
       <div className={styles.container}>
