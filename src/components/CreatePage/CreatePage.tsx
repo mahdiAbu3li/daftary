@@ -3,7 +3,7 @@ import { fabric } from "fabric";
 import BoxEditor from "../BoxEditor/BoxEditor";
 import styles from "./CreatePageStyle.module.css";
 import { BsCircle } from "react-icons/bs";
-import { EditorContext } from "../../context/EditorContext";
+import { EditorContext } from "../../context/EditorContext/EditorContext";
 import { MdTextFields } from "react-icons/md";
 import { BsBoundingBoxCircles } from "react-icons/bs";
 import { RiImageAddFill } from "react-icons/ri";

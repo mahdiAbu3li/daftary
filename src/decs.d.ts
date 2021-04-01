@@ -14,3 +14,5 @@ declare module "@editorjs/delimiter";
 declare module "@editorjs/simple-image";
 declare module "@editorjs/inline-code";
 declare module "react-pageflip";
+declare module "react-card-flip";
+declare module "react-vanilla-tilt";
