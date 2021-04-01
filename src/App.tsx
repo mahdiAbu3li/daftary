@@ -10,10 +10,7 @@ function App() {
       <EditorContextProvider>
         <Router>
           <AuthController>
-            {/* <CreatePage /> */}
-            {/* <Book /> */}
             <Routes />
-            {/* <EditorJS /> */}
           </AuthController>
         </Router>
       </EditorContextProvider>

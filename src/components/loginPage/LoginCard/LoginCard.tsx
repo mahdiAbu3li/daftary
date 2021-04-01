@@ -1,20 +1,11 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import styles from "./LoginCardStyle.module.css";
 import loginImg from "../../../assets/images/login1.jpg";
-import FacebookLogin, {
-  ReactFacebookFailureResponse,
-  ReactFacebookLoginInfo,
-} from "react-facebook-login";
+import FacebookLogin from "react-facebook-login";
 import AuthContext from "../../../context/AuthContext/AuthContext";
 import GoogleLogin from "react-google-login";
 import swal from "sweetalert";
 function LoginCard() {
-  interface TypeLogin {
-    response: (
-      userInfo: ReactFacebookLoginInfo | ReactFacebookFailureResponse
-    ) => void;
-  }
-
   const values = useContext(AuthContext);
   const responseFacebook = (response: any) => {
     console.log(response);

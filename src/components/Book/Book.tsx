@@ -1,5 +1,5 @@
 import HTMLFlipBook from "react-pageflip";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import mahdi from "../../mahdi.jpg";
 import bookImg from "../../assets/images/book.jpg";
 import styles from "./BookStyle.module.css";
