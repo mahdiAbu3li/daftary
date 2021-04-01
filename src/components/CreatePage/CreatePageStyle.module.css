@@ -1,0 +1,44 @@
+.container {
+  /* background-color: bisque; */
+  border: 1px solid black;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.addObject {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  width: 99%;
+  /* border: black solid 0.5px; */
+  margin: 5px;
+  flex-wrap: wrap;
+  font-size: 15px;
+}
+
+.addObject button {
+  font-size: 1.5em;
+}
+
+/* .canvas-container {
+  width: 100% !important;
+  margin-top: 100px;
+}
+.lower-canvas  {
+  border: 1px solid red;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 50vh !important;
+  width: 100% !important;
+}
+..upper-canvas{
+
+} */
+
+/* .fabric-canvas-wrapper {
+  width: 90% !important;
+} */

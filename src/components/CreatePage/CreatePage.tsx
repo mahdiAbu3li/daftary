@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { fabric } from "fabric";
 import mahdi from "../../mahdi.jpg";
-
+import BoxEditor from "../BoxEditor/BoxEditor";
+import styles from "./CreatePageStyle.module.css";
+import { BsLayoutTextWindowReverse } from "react-icons/bs";
 const CreatePage = () => {
   const x = new fabric.Canvas("init");
   const [canvas, setCanvas] = useState(x);
+
   useEffect(() => {
     setCanvas(initCanvas());
   }, []);
 
   const initCanvas = () =>
     new fabric.Canvas("canvas", {
-      height: 900,
-      width: 800,
+      height: window.innerHeight - 190,
+      width: window.innerWidth - 22,
       backgroundColor: "#f5f5f5",
     });
 
@@ -43,22 +46,20 @@ const CreatePage = () => {
     canvas.renderAll();
   };
   return (
-    <div
-      className="container"
-      style={{
-        backgroundColor: "white",
-        width: "100%",
-        border: "1px solid black",
-        height: "auto",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <canvas id="canvas"></canvas>
-      <button onClick={() => addText()}>Text</button>
-      <button onClick={() => addRect()}>Rectangle</button>
-      <button onClick={() => addImage()}>Image</button>
+    <div>
+      <div className={styles.container}>
+        <BoxEditor />
+
+        <div className={styles.addObject}>
+          <button onClick={() => addText()}>Text</button>
+          <button onClick={() => addRect()}>Rectangle</button>
+          <button onClick={() => addImage()}>Image</button>
+        </div>
+
+        {/* <div className="fabric-canvas-wrapper"> */}
+        <canvas className={styles.myCanvas} id="canvas"></canvas>
+        {/* </div> */}
+      </div>
     </div>
   );
 };
