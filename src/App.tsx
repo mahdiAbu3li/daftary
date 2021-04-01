@@ -1,17 +1,21 @@
 import React from "react";
-import EditorJS from "./components/editor/Editor";
-import Book from "./components/Book/Book";
-import CreatePage from "./components/CreatePage/CreatePage";
-import EditorContextProvider from "./context/EditorContextProvider";
-import LoginPage from "./components/loginPage/LoginPage";
+import EditorContextProvider from "./context/EditorContext/EditorContextProvider";
+import { BrowserRouter as Router } from "react-router-dom";
+import AuthController from "./context/AuthContext/AuthController";
+import Routes from "./Route/Routes";
+
 function App() {
   return (
     <div className="App">
       <EditorContextProvider>
-        {/* <CreatePage /> */}
-        {/* <Book /> */}
-        <LoginPage />
-        {/* <EditorJS /> */}
+        <Router>
+          <AuthController>
+            {/* <CreatePage /> */}
+            {/* <Book /> */}
+            <Routes />
+            {/* <EditorJS /> */}
+          </AuthController>
+        </Router>
       </EditorContextProvider>
     </div>
   );

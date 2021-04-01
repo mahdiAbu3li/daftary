@@ -6,7 +6,7 @@ import { BsTypeBold } from "react-icons/bs";
 import { BsTypeItalic } from "react-icons/bs";
 import { BsTypeUnderline } from "react-icons/bs";
 import { SketchPicker } from "react-color";
-import { EditorContext } from "../../context/EditorContext";
+import { EditorContext } from "../../context/EditorContext/EditorContext";
 import styles from "./BoxEditor.module.css";
 
 function BoxEditor() {
