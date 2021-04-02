@@ -9,7 +9,7 @@ const AuthController: React.FC<{}> = ({ children }) => {
   const onLogin = () => {
     setIsLogin(true);
     window.localStorage.setItem("isLogin", "true");
-    alert(231);
+
     history.push("./dashboard");
   };
   const onLogout = () => {

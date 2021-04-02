@@ -103,6 +103,7 @@
   }
   .right_col {
     width: 100%;
+    background-color: #17212b;
   }
   .right_col h1 {
     font-size: 2rem;
