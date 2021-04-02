@@ -12,8 +12,8 @@ const Routes = () => {
           <LoginPage />
         </Route>
         <PrivateRoute path="/dashboard">
-          {/* <Book /> */}
-          <CreatePage />
+          <Book />
+          {/* <CreatePage /> */}
         </PrivateRoute>
       </Switch>
     </div>
