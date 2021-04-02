@@ -47,7 +47,7 @@ function LoginCard() {
           <br />
           <div className={styles.google}>
             <GoogleLogin
-              clientId="1026310507383-lu8b8ibiffoeok6s2u0udpug12jf29ij.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+              clientId="1026310507383-ianfdjo1og4gu3ir3bn7nksrvrecj71s.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
               buttonText="LOGIN WITH GOOGLE"
               onSuccess={responseGoogleSuccess}
               onFailure={responseGoogleFailer}
