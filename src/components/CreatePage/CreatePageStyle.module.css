@@ -27,6 +27,27 @@
   border: none;
 }
 
+.addPage {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-size: 3rem;
+  z-index: 50;
+  /* border: 2px solid #17212b; */
+  background: none;
+  background-color: #17212b;
+  outline: none;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  border: none;
+  padding: 0;
+}
+/* .addPage:hover {
+  background-color: red;
+  border: 2px solid #17212b;
+} */
+
 /* .canvas-container {
   width: 100% !important;
   margin-top: 100px;
