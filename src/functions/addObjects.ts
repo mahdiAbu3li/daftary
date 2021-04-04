@@ -19,6 +19,8 @@ export const addText = () => {
     fontSize: 30,
     fill: "#000",
     textAlign: "center",
+    lockMovementX: false,
+    lockMovementY: false,
   });
   return text;
 };
