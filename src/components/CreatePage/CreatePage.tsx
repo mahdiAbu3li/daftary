@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { fabric } from "fabric";
 import BoxEditor from "../BoxEditor/BoxEditor";
 import styles from "./CreatePageStyle.module.css";
@@ -9,6 +9,8 @@ import { BsBoundingBoxCircles } from "react-icons/bs";
 import { RiImageAddFill } from "react-icons/ri";
 import { FaSlash } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { GrAdd } from "react-icons/gr";
+import { BiPlus } from "react-icons/bi";
 
 import {
   addText,
@@ -85,7 +87,7 @@ const CreatePage = () => {
     else setIsText(false);
   });
 
-  console.log(isText);
+  // console.log(isText);
   const initCanvas = () =>
     new fabric.Canvas("canvas", {
       height: window.innerHeight - 65,
@@ -99,26 +101,39 @@ const CreatePage = () => {
     // console.log(canvas.loadFromJSON(asd , ()));
     canvas.renderAll();
   };
-  const addImage = () => {
-    fabric.Image.fromURL(
-      // "https://homepages.cae.wisc.edu/~ece533/images/airplane.png"
-      "C:\\Users\\mahdii\\Desktop\\New\\ma.jpg",
-      (img) => {
-        canvas.add(img);
-        canvas.renderAll();
-      }
-    );
-  };
+
   const removeObject = () => {
     const obj = canvas.getActiveObject();
     canvas.remove(obj);
   };
-
+  const imageSelectedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files !== null) {
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        if (
+          event.target !== null &&
+          typeof event.target.result === "string" &&
+          event.target.result !== null
+        ) {
+          fabric.Image.fromURL(event.target.result, (img) => {
+            img.scaleToHeight(400);
+            img.scaleToWidth(400);
+            canvas.add(img);
+            canvas.renderAll();
+          });
+        }
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+  const inputFile = useRef<HTMLInputElement>(null);
   return (
     <div>
       <div className={styles.container}>
         {isText ? <BoxEditor /> : <></>}
-
+        <button className={styles.addPage}>
+          <BiPlus />
+        </button>
         <div className={styles.addObject}>
           <button onClick={() => addObject(addText())}>
             <MdTextFields />
@@ -141,7 +156,18 @@ const CreatePage = () => {
           >
             <FaSlash />
           </button>
-          <button onClick={() => addImage()}>
+          <input
+            type="file"
+            ref={inputFile}
+            accept="image/*"
+            style={{ display: "none" }}
+            onChange={(e) => imageSelectedHandler(e)}
+          />
+          <button
+            onClick={() => {
+              inputFile.current?.click();
+            }}
+          >
             <RiImageAddFill />
           </button>
           <button onClick={removeObject}>
